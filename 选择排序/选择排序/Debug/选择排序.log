@@ -1,0 +1,4 @@
+﻿  selectsort.c
+selectsort.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+  选择排序.vcxproj -> D:\code\ShowWeb\选择排序\Debug\选择排序.exe
+  选择排序.vcxproj -> D:\code\ShowWeb\选择排序\Debug\选择排序.pdb (Partial PDB)

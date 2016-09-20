@@ -1,0 +1,4 @@
+﻿  InsertSort.c
+InsertSort.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+  插入排序.vcxproj -> D:\code\ShowWeb\插入排序\Debug\插入排序.exe
+  插入排序.vcxproj -> D:\code\ShowWeb\插入排序\Debug\插入排序.pdb (Partial PDB)

@@ -1,0 +1,4 @@
+﻿  DynamicArray.c
+DynamicArray.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+  动态数组.vcxproj -> D:\code\ShowWeb\动态数组\Debug\动态数组.exe
+  动态数组.vcxproj -> D:\code\ShowWeb\动态数组\Debug\动态数组.pdb (Partial PDB)

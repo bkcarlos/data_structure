@@ -1,0 +1,4 @@
+﻿  testlinklist.c
+linklist.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+  单向链表.vcxproj -> D:\code\ShowWeb\单向链表\Debug\单向链表.exe
+  单向链表.vcxproj -> D:\code\ShowWeb\单向链表\Debug\单向链表.pdb (Partial PDB)
