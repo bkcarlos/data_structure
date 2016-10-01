@@ -1,0 +1,6 @@
+﻿  testQueueStack.c
+  QueueStack.c
+  正在生成代码...
+QueueStack.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+  顺序栈.vcxproj -> D:\code\ShowWeb\顺序栈\Debug\顺序栈.exe
+  顺序栈.vcxproj -> D:\code\ShowWeb\顺序栈\Debug\顺序栈.pdb (Partial PDB)
