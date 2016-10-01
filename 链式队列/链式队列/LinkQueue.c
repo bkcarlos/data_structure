@@ -5,7 +5,7 @@ int Init_LinkQueue(void ** Queue)
 {
 	// 对传入的参数进行检测
 	if (Queue == NULL)
-		exit(-1); // 为什么不放回错误码了，初始化不成功，后面的操作都会错
+		exit(-1); // 为什么不返回错误码了，初始化不成功，后面的操作都会错
 
 	// 开辟一个LinkQueue结构体，
 	LinkQueue *queue = (LinkQueue *)malloc(sizeof(LinkQueue));
@@ -16,7 +16,7 @@ int Init_LinkQueue(void ** Queue)
 	}
 
 	// 对开辟的空间的值初始化
-	queue->head = NULL;
+	queue->head.next = NULL;
 	queue->size = 0;
 
 	// 指针间的间接赋值
@@ -49,8 +49,8 @@ int Push_LinkQueue(void * Queue, void * Data)
 	 * 为了将 head 原来后面的数据串起来，所以首先需要用 data 的 next 域来接收head的next域
 	 * 最后将 head 指向 data
 	*/
-	data->next = queue->head;
-	queue->head = data;
+	data->next = queue->head.next;
+	queue->head.next = data;
 
 	// 链式对列维护了一个长度变量，入队是长度加一
 	++ queue->size;
@@ -58,6 +58,7 @@ int Push_LinkQueue(void * Queue, void * Data)
 	return 0;
 }
 
+// 出队操作
 int Pop_LinkQueue(void * Queue)
 {
 	if (Queue == NULL)
@@ -73,7 +74,7 @@ int Pop_LinkQueue(void * Queue)
 		return -2;
 	}
 	
-	LinkQueueNode *pCurrent = queue->head;
+	LinkQueueNode *pCurrent = queue->head.next;
 	
 	// 为什么需要检查怎么远
 	/*
@@ -81,7 +82,7 @@ int Pop_LinkQueue(void * Queue)
 	 * 只检测 pCurrent->next != NULL 指针将指向最后一个元素，后面pCurrent->next = NULL或者 pCurrent = NULL;都是无用的,
 	 * 在讨论一下就是pCurrent->next->next != NULL的检测，这个主要是保证让指针最后停到对头的后面一个元素的位置上，保证将最后的元素指针置空
 	 */
-	while (pCurrent != NULL && pCurrent->next != NULL && pCurrent->next->next != NULL)
+	while (pCurrent != NULL && pCurrent->next != NULL && pCurrent->next->next!=NULL)
 	{
 		pCurrent = pCurrent->next;
 	}
@@ -95,7 +96,7 @@ int Pop_LinkQueue(void * Queue)
 	// 因为之后将queue->head->next 置空，而不会将queue->head置空，那么访问对列时，也可以访问一个元素 
 	if (queue->size == 0)
 	{
-		queue->head = NULL;
+		queue->head.next = NULL;
 	}
 
 	return 0;
@@ -123,7 +124,6 @@ int Destroy_LinkQueue(void * Queue)
 	LinkQueue *queue = (LinkQueue *)Queue;
 	
 	// 即使知道queue不可能为空，但是还是对它做一次检测
-
 	if(queue!=NULL)
 	 free(queue);
 
@@ -136,7 +136,7 @@ void* Back_LinkQueue(void * Queue)
 	if (Queue == NULL)
 		return NULL;
 	LinkQueue *queue = (LinkQueue *)Queue;
-	return queue->head;
+	return queue->head.next;
 }
 
 // 返回队首数据的指针
@@ -148,7 +148,11 @@ void* Front_LinkQueue(void * Queue)
 	}
 	LinkQueue *queue = (LinkQueue *)Queue;
 
-	LinkQueueNode *pCurrent = queue->head;
+	/*if (queue->size == 0)
+	{
+		return NULL;
+	}*/
+	LinkQueueNode *pCurrent = queue->head.next;
 
 	while (pCurrent != NULL && pCurrent->next != NULL)
 	{

@@ -9,7 +9,7 @@ typedef struct _LINKQUEUENODE
 
 typedef struct _LINKQUEUE
 {
-	LinkQueueNode *head;
+	LinkQueueNode head;
 	int size;
 }LinkQueue;
 

@@ -3,7 +3,7 @@
 
 typedef struct _PERSON
 {
-	LinkQueueNode *next;
+	LinkQueueNode next;
 	char name[64];
 	int age;
 }Person;
@@ -27,8 +27,11 @@ void test()
 	Push_LinkQueue(queue, &p5);
 	Push_LinkQueue(queue, &p6);
 
+
+	printf("打印队列的首元素\n");
 	Person *p = Front_LinkQueue(queue);
 	printf("%s->%d\n", p->name, p->age);
+	printf("打印队列的尾元素\n");
 	p = Back_LinkQueue(queue);
 	printf("%s->%d\n", p->name, p->age);
 
@@ -42,7 +45,8 @@ void test()
 		Pop_LinkQueue(queue);
 	}
 #else
-	
+	printf("打印队列的元素\n");
+
 	while ((p = (Person *)Front_LinkQueue(queue)))
 	{
 		printf("%s->%d\n", p->name, p->age);
