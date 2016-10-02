@@ -153,7 +153,7 @@ int Destory_QueueStack(void *queuestack)
 	return 0;
 }
 
-int Size__QueueStack(void *queuestack)
+int Size_QueueStack(void *queuestack)
 {
 	if (queuestack == NULL)
 	{

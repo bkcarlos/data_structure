@@ -49,12 +49,12 @@ void test()
 
 	p14 = Top_QueueStack(stack);
 	printf("Name:%s Age:%d\n", p14->Name, p14->age);
-	printf("栈的长度%d\n", Size__QueueStack(stack));
-	while (Size__QueueStack(stack))
+	printf("栈的长度%d\n", Size_QueueStack(stack));
+	while (Size_QueueStack(stack))
 	{
 		Pop_QueueStack(stack);
 	}
-	printf("栈的长度%d\n",Size__QueueStack(stack));
+	printf("栈的长度%d\n", Size_QueueStack(stack));
 
 	Destory_QueueStack(stack);
 

@@ -32,4 +32,4 @@ void * Top_QueueStack(void *queuestack);
 int Destory_QueueStack(void *queuestack);
 
 // 返回栈的大小
-int Size__QueueStack(void *queuestack);
+int Size_QueueStack(void *queuestack);
