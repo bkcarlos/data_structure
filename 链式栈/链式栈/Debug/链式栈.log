@@ -1,0 +1,4 @@
+﻿  testLinkStack.c
+testLinkStack.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+  链式栈.vcxproj -> D:\code\ShowWeb\链式栈\Debug\链式栈.exe
+  链式栈.vcxproj -> D:\code\ShowWeb\链式栈\Debug\链式栈.pdb (Partial PDB)
