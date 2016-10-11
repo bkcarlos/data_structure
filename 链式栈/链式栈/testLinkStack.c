@@ -18,10 +18,10 @@ void test()
 	People p7 = { NULL,"ggg", 26 };
 	People p8 = { NULL,"hhh", 27 };
 	People p9 = { NULL,"iii", 28 };
-	People p10 = {NULL, "jjj", 29 };
-	People p11 = {NULL, "kkk", 39 };
-	People p12 = {NULL, "lll", 14 };
-	People p13 = {NULL, "mmm", 18 };
+	People p10 = { NULL, "jjj", 29 };
+	People p11 = { NULL, "kkk", 39 };
+	People p12 = { NULL, "lll", 14 };
+	People p13 = { NULL, "mmm", 18 };
 
 	LinkStack *stack = NULL;
 
@@ -50,14 +50,20 @@ void test()
 	printf("Name:%s Age:%d\n", p14->Name, p14->age);
 
 	printf("栈的长度%d\n", Size_LinkStack(stack));
+#if 0
 	while (Size_LinkStack(stack))
 	{
 		Pop_LinkStack(stack);
 	}
+#else
+	while (Top_LinkStack(stack))
+	{
+		Pop_LinkStack(stack);
+	}
+#endif
 	printf("栈的长度%d\n", Size_LinkStack(stack));
 
 	Destory_LinkStack(stack);
-
 
 
 }
@@ -65,7 +71,6 @@ void test()
 int main()
 {
 	test();
-
 	system("pause");
 	return 0;
 }

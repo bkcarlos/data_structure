@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{402963BD-3B5B-4E99-A643-EBC9F6EB2837}</ProjectGuid>
-    <RootNamespace>链式栈</RootNamespace>
+    <ProjectGuid>{DDC66E0E-34E8-489C-89CD-AC141F58286F}</ProjectGuid>
+    <RootNamespace>顺序队列</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -110,10 +110,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="LinkStack.h" />
+    <ClInclude Include="OrderQueue.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="testLinkStack.c" />
+    <ClCompile Include="OrderQueue.c" />
+    <ClCompile Include="testOrderQueue.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

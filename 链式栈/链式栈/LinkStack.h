@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
@@ -6,7 +7,6 @@ typedef struct _STACKNODE
 {
 	struct _STACKNODE *Next;
 }StackNode;
-
 
 
 typedef struct _LINKSTACK
@@ -18,39 +18,23 @@ typedef struct _LINKSTACK
 }LinkStack;
 
 //初始化
-int Init_LinkStack(void **linkstack)
+int Init_LinkStack(LinkStack **stack)
 {
-	if (linkstack == NULL)
+	if (stack == NULL)
 	{
 		exit(-1);
 	}
-
-	// 将数据类型进行转化，便于后面的操作 
-	LinkStack **stack = (LinkStack **)linkstack;
-	
-	// 检查栈是否已经有可用的内存
-	if (*stack == NULL)
-	{
-		*stack = (LinkStack *)malloc(sizeof(LinkStack));
-	}
-	// 对开辟空间的检测
-	if (*stack == NULL)
-	{
-		exit(-2);
-	}
-	
-	// 将数据和长度初始化
+	*stack = (LinkStack *)malloc(sizeof(LinkStack));
 	(*stack)->Head.Next = NULL;
 	(*stack)->Size = 0;
 
 	return 0;
 }
 
-
 // 入栈
-int Push_LinkStack(void *linkstack, void *Data)
+int Push_LinkStack(LinkStack *stack, void *Data)
 {
-	if (linkstack == NULL)
+	if (stack == NULL)
 	{
 		return -1;
 	}
@@ -58,11 +42,9 @@ int Push_LinkStack(void *linkstack, void *Data)
 	{
 		return -2;
 	}
-
-	// 将数据类型进行转化，便于后面的操作 
-	LinkStack *stack = (LinkStack *)linkstack;
+	//
 	StackNode *data = (StackNode *)Data;
-	
+	//
 	data->Next = stack->Head.Next;
 	stack->Head.Next = data;
 	++stack->Size;
@@ -72,72 +54,61 @@ int Push_LinkStack(void *linkstack, void *Data)
 
 
 // 出栈
-int Pop_LinkStack(void *linkstack)
+int Pop_LinkStack(LinkStack *stack) 
 {
-	if (linkstack == NULL)
+	if (stack == NULL)
 	{
 		return -1;
 	}
-	// 将数据类型进行转化，便于后面的操作 
-	LinkStack *stack = (LinkStack *)linkstack;
-#if 0	
-	// 栈为空，不能出栈
 	if (stack->Size == 0)
 	{
 		return -2;
 	}
-	else
-	{
-		stack->Head.Next = stack->Head.Next->Next;
-		--stack->Size;
-	}
-#else
-	if (stack->Head.Next != NULL)
-	{
-		stack->Head.Next = stack->Head.Next->Next;
-		--stack->Size;
-	}
-#endif
+	// 
+	stack->Head.Next = stack->Head.Next->Next;
+	--stack->Size;
 	return 0;
 }
 
-void *Top_LinkStack(void *linkstack)
+void *Top_LinkStack(LinkStack *stack)
 {
-	if (linkstack == NULL)
+	if (stack == NULL)
 	{
 		return NULL;
 	}
-	// 将数据类型进行转化，便于后面的操作 
-	LinkStack *stack = (LinkStack *)linkstack;
-
+	//
 	return stack->Head.Next;
-
 }
 
-int Size_LinkStack(void *linkstack)
+int Size_LinkStack(LinkStack *stack)
 {
-	if (linkstack == NULL)
+	if (stack == NULL)
 	{
 		return 0;
 	}
-	// 将数据类型进行转化，便于后面的操作 
-	LinkStack *stack = (LinkStack *)linkstack;
+#if 0
 	return stack->Size;
+#else
+
+	int count = 0;
+	StackNode *pCurrent = stack->Head.Next;
+	while (pCurrent != NULL)
+	{
+		++count;
+		pCurrent = pCurrent->Next;
+	}
+	return count;
+
+#endif
 }
 
-int Destory_LinkStack(void *linkstack)
+int Destory_LinkStack(LinkStack *stack)
 {
-	if (linkstack == NULL)
+	if (stack == NULL)
 	{
 		return -1;
 	}
-	// 将数据类型进行转化，便于后面的操作 
-	LinkStack *stack = (LinkStack *)linkstack;
-
-	if (stack->Head.Next != NULL)
-	{
-		stack->Head.Next = NULL;
-	}
-	stack->Size = 0;
+	free(stack);
+	stack = NULL;
 	return 0;
 }
