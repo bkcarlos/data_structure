@@ -1,4 +1,5 @@
-﻿  LinkQueue.c
-LinkQueue.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
-  链式队列.vcxproj -> D:\code\ShowWeb\链式队列\Debug\链式队列.exe
-  链式队列.vcxproj -> D:\code\ShowWeb\链式队列\Debug\链式队列.pdb (Partial PDB)
+﻿  testlinkqueue.c
+  LinkQueue.c
+  正在生成代码...
+  链式队列.vcxproj -> D:\github\data_structure\链式队列\Debug\链式队列.exe
+  链式队列.vcxproj -> D:\github\data_structure\链式队列\Debug\链式队列.pdb (Partial PDB)

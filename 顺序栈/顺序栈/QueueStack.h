@@ -1,3 +1,4 @@
+#pragma once
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -6,30 +7,29 @@
 typedef struct _QUEUESTACK
 {
 	// 栈的数据
-	void **Stack;
+	void **data;
 
 	// 栈的数据长度
-	int Size;
+	int size;
 
 	// 栈的容量
-	int Capacity;
+	int capacity;
 }QueueStack;
 
-
 // 初始化栈
-int Init_QueueStack(void **queuestack, int capacity);
+int Init_QueueStack(QueueStack **stack, int capacity);
 
 //入栈
-int Push_QueueStack(void *queuestack, void *data);
+int Push_QueueStack(QueueStack *stack, void *data);
 
 // 出栈
-int Pop_QueueStack(void *queuestack);
+int Pop_QueueStack(QueueStack *stack);
 
-// 获取栈顶
-void * Top_QueueStack(void *queuestack);
+// 栈顶
+void * Top_QueueStack(QueueStack *stack);
 
 // 销毁栈
-int Destory_QueueStack(void *queuestack);
+int Destory_QueueStack(QueueStack *stack);
 
-// 返回栈的大小
-int Size_QueueStack(void *queuestack);
+// 栈的大小
+int Size_QueueStack(QueueStack *stack);

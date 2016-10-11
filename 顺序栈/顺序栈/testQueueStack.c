@@ -28,7 +28,7 @@ void test()
 
 	Init_QueueStack(&stack, 10);
 
-	Push_QueueStack(stack,&p1);
+	Push_QueueStack(stack, &p1);
 	Push_QueueStack(stack, &p2);
 	Push_QueueStack(stack, &p3);
 	Push_QueueStack(stack, &p4);
@@ -41,19 +41,29 @@ void test()
 	Push_QueueStack(stack, &p11);
 	Push_QueueStack(stack, &p12);
 	Push_QueueStack(stack, &p13);
-	
+
+
 	People *p14 = Top_QueueStack(stack);
 
 	printf("Name:%s Age:%d\n", p14->Name, p14->age);
+
 	Pop_QueueStack(stack);
 
 	p14 = Top_QueueStack(stack);
 	printf("Name:%s Age:%d\n", p14->Name, p14->age);
+
 	printf("栈的长度%d\n", Size_QueueStack(stack));
+#if 0
 	while (Size_QueueStack(stack))
 	{
 		Pop_QueueStack(stack);
 	}
+#else
+	while (Top_QueueStack(stack))
+	{
+		Pop_QueueStack(stack);
+	}
+#endif
 	printf("栈的长度%d\n", Size_QueueStack(stack));
 
 	Destory_QueueStack(stack);
@@ -64,8 +74,10 @@ void test()
 int main()
 {
 
+
+
 	test();
 
 	system("pause");
-	return 0;
+	return 1;
 }

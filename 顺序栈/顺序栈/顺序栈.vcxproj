@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{488FEFD2-97BB-4A97-8DEC-374AEA0A0C48}</ProjectGuid>
+    <ProjectGuid>{20BD6F5A-ABA2-44D0-83F8-6A6DCD0A7E3E}</ProjectGuid>
     <RootNamespace>顺序栈</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>

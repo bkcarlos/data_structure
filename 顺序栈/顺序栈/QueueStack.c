@@ -1,47 +1,35 @@
 #include "QueueStack.h"
 
-
 // 初始化栈
-int Init_QueueStack(void **queuestack, int capacity)
+int Init_QueueStack(QueueStack **stack, int capacity)
 {
-	if (queuestack == NULL)
+	if (stack == NULL)
 	{
 		exit(-1);
 	}
-	// 定义一个栈结构体的指针
-	QueueStack *stack = (QueueStack *)malloc(sizeof(QueueStack));
-
-	// 判断开辟内存是否成功
-	if (stack == NULL)
+	// 开辟一个栈的结点
+	*stack = (QueueStack *)malloc(sizeof(QueueStack));
+	if (*stack == NULL)
 	{
 		exit(-2);
 	}
-
-	// 为stack 开辟一段堆内存
-	stack->Stack = (void **)malloc(sizeof(void *)*capacity);
-
-	// 判断开辟内存是否成功
-	if (stack->Stack == NULL)
+	// 为栈的数据域开辟空间
+	(*stack)->data = (void **)malloc(sizeof(void *)*capacity);
+	if ((*stack)->data == NULL)
 	{
-		exit(-2);
+		exit(-3);
 	}
-
-	// 写入相关的变化
-	stack->Capacity = capacity;
-	stack->Size = 0;
-
-	// 将开辟出来的空间置零
-	memset(stack->Stack, 0, sizeof(void *)*stack->Capacity);
-
-	*queuestack = stack;
+	// 将栈开辟的数据域的空间置零
+	memset((*stack)->data, 0, sizeof(void *)*capacity);
+	(*stack)->capacity = capacity;
+	(*stack)->size = 0;
 	return 0;
 }
 
 //入栈
-int Push_QueueStack(void *queuestack, void *data)
+int Push_QueueStack(QueueStack *stack, void *data)
 {
-	// 对传入的参数做判断
-	if (queuestack == NULL)
+	if (stack == NULL)
 	{
 		return -1;
 	}
@@ -49,120 +37,78 @@ int Push_QueueStack(void *queuestack, void *data)
 	{
 		return -2;
 	}
-
-	// 将指针转化为我们可以操作的类型
-	QueueStack *stack = (QueueStack *)queuestack;
-	if (stack->Size == stack->Capacity)
+	if (stack->size == stack->capacity)
 	{
-		// 当数据域的长度不够时，进行动态开辟
-		void ** newStack = (void **)malloc(stack->Capacity * 2);
-		if (newStack == NULL)
+		void **newData = (void **)malloc(sizeof(void *)*stack->capacity * 2);
+		if (newData == NULL)
 		{
 			return -3;
 		}
-		// 将开辟的空间全部置零
-		memset(newStack, 0, sizeof(void *)* stack->Capacity * 2);
-
-		// 将原来的数据拷贝到新的栈
-		memcpy(newStack, stack->Stack, sizeof(void *)*stack->Capacity);
-
-		// 释放原来栈的空间
-		free(stack->Stack);
-
-		// 将栈的数据域指向新的位置
-		stack->Stack = newStack;
-		stack->Capacity *= 2;
+		stack->capacity *= 2;
+		// 将栈开辟的数据域的空间置零
+		memset(newData, 0, stack->capacity);
+		// 拷贝原来的数据到新的数据域
+		memcpy(newData, stack->data, stack->capacity / 2);
+		// 释放原来的空间
+		free(stack->data);
+		stack->data = newData;
 	}
-
-	// 将数据加入到栈的数据域中 
-	stack->Stack[stack->Size] = data;
-	++stack->Size;
-
+	stack->data[stack->size] = data;
+	++stack->size;
 	return 0;
 }
 
-int Pop_QueueStack(void *queuestack)
+int Pop_QueueStack(QueueStack *stack)
 {
-	if (queuestack == NULL)
+	if (stack == NULL)
 	{
 		return -1;
 	}
 
-	// 将指针转化为我们可以操作的类型
-	QueueStack *stack = (QueueStack *)queuestack;
-
-	// 数据域没数据没法出栈
-	if (stack->Size == 0)
+	if (stack->size == 0)
 	{
 		return -2;
 	}
-	else
-	{
-		// 先将长度减一
-		--stack->Size;
-
-		// 将最后一个元素的位置空
-		stack->Stack[stack->Size] = NULL;
-	}
+	// 将数据的最后一位置空，同时使长度减一
+	stack->data[--stack->size] = NULL;
 	return 0;
-
 }
 
-void * Top_QueueStack(void *queuestack)
+void * Top_QueueStack(QueueStack *stack)
 {
-	if (queuestack == NULL)
+	if (stack == NULL)
 	{
 		return NULL;
 	}
-
-	// 将指针转化为我们可以操作的类型
-	QueueStack *stack = (QueueStack *)queuestack;
-
-	// 数据域没数据没法出栈
-	if (stack->Size == 0)
+	if (stack->size == 0)
 	{
 		return NULL;
 	}
-	else
-	{
-		return stack->Stack[stack->Size - 1];
-	}
+	return stack->data[stack->size - 1];
 }
 
-int Destory_QueueStack(void *queuestack)
+int Destory_QueueStack(QueueStack *stack)
 {
-	if (queuestack == NULL)
+	if (stack == NULL)
 	{
 		return -1;
 	}
 
-	// 将指针转化为我们可以操作的类型
-	QueueStack *stack = (QueueStack *)queuestack;
-
-	if (stack->Stack != NULL)
+	if (stack->data == NULL)
 	{
-		// 不知道这段内存的位置（栈内存还是堆内存） 里面存储的是地址 由使用者自己管理
-		//free(stack->Stack);
-
-		stack->Stack = NULL;
-		stack->Size = 0;
-		stack->Capacity = 0;
+		free(stack->data);
 	}
+
 	free(stack);
-
+	stack = NULL;
 	return 0;
 }
 
-int Size_QueueStack(void *queuestack)
+int Size_QueueStack(QueueStack *stack)
 {
-	if (queuestack == NULL)
+	if (stack == NULL)
 	{
 		return -1;
 	}
-
-	// 将指针转化为我们可以操作的类型
-	QueueStack *stack = (QueueStack *)queuestack;
-
-	return stack->Size;
-
+	return stack->size;
 }

@@ -14,22 +14,22 @@ typedef struct _LINKQUEUE
 }LinkQueue;
 
 // 初始化
-int Init_LinkQueue(void **Queue);
+int Init_LinkQueue(LinkQueue ** queue);
 
-// 入队列
-int Push_LinkQueue(void *Queue, void *Data);
+// 入对
+int Push_LinkQueue(LinkQueue * queue, void * Data);
 
-// 出队列
-int Pop_LinkQueue(void *Queue);
+// 出队操作
+int Pop_LinkQueue(LinkQueue * queue);
 
-// 队列中元素的个数
-int Size_LinkQueue(void *Queue);
+// 返回对列的大小
+int Size_LinkQueue(LinkQueue * queue);
 
 // 销毁队列
-int Destroy_LinkQueue(void *Queue);
+int Destroy_LinkQueue(LinkQueue * queue);
 
-// 返回对头元素
-void* Front_LinkQueue(void *Queue);
+// 返回对尾数据的指针
+void* Back_LinkQueue(LinkQueue * queue);
 
-// 放回对尾元素
-void* Back_LinkQueue(void *Queue);
+// 返回队首数据的指针
+void* Front_LinkQueue(LinkQueue * queue);

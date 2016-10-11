@@ -20,10 +20,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinkQueue.c">
+    <ClCompile Include="testlinkqueue.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="testlinkqueue.c">
+    <ClCompile Include="LinkQueue.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -34,7 +34,7 @@ void test()
 	printf("打印队列的尾元素\n");
 	p = Back_LinkQueue(queue);
 	printf("%s->%d\n", p->name, p->age);
-
+	printf("对列的长度：%d\n", Size_LinkQueue(queue));
 
 
 #if 0
@@ -55,7 +55,7 @@ void test()
 
 #endif
 
-	// Destroy_LinkQueue(queue);
+	 Destroy_LinkQueue(queue);
 }
 
 int main()
